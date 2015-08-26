@@ -12,20 +12,24 @@
 	<dict>
 		<key>3C332463CEBECDEF34D87E16D4E64A30BAF66BBE</key>
 		<string>https://github.com/angelinachoi/JWT-Prototype.git</string>
+		<key>E796CE2813B607F8459B6B1CB51B311B30F538A4</key>
+		<string>https://github.com/angelinachoi/JWT_Prototype-Second-App-.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>JWT_Prototype_ApplicationB/JWT_Prototype_ApplicationB.xcodeproj/project.xcworkspace</string>
+	<string>JWT_Prototype_ApplicationB.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>3C332463CEBECDEF34D87E16D4E64A30BAF66BBE</key>
 		<string>../../..</string>
+		<key>E796CE2813B607F8459B6B1CB51B311B30F538A4</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/angelinachoi/JWT-Prototype.git</string>
+	<string>https://github.com/angelinachoi/JWT_Prototype-Second-App-.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3C332463CEBECDEF34D87E16D4E64A30BAF66BBE</string>
+	<string>E796CE2813B607F8459B6B1CB51B311B30F538A4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -34,7 +38,15 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>3C332463CEBECDEF34D87E16D4E64A30BAF66BBE</string>
 			<key>IDESourceControlWCCName</key>
-			<string>JWT-Prototype</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E796CE2813B607F8459B6B1CB51B311B30F538A4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JWT_Prototype_ApplicationB</string>
 		</dict>
 	</array>
 </dict>
