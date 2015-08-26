@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JWT_Prototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +18,75 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBX-jE-yMa">
+                                <rect key="frame" x="118" y="102" width="364" height="396"/>
+                                <color key="backgroundColor" red="0.38092710079999997" green="0.45921124099999999" blue="0.77544006239999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="364" id="dUI-A6-N2p"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.96499464779999999" green="0.96714751639999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                </variation>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pw-1a-bml">
+                                <rect key="frame" x="295" y="538" width="289" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="289" id="S8Z-Cn-nTB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Load Token">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                </variation>
+                                <connections>
+                                    <action selector="loadToken:" destination="BYZ-38-t0r" eventType="touchUpInside" id="59b-l8-4jM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcy-Dj-6eZ">
+                                <rect key="frame" x="16" y="538" width="289" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="289" id="aLh-ID-Vnr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Save Token">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                </variation>
+                                <connections>
+                                    <action selector="saveTokenFunction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pYe-30-rE3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sBX-jE-yMa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="79O-EV-6UT"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="AEF-k1-BdV"/>
+                            <constraint firstAttribute="bottom" secondItem="gcy-Dj-6eZ" secondAttribute="bottom" constant="20" symbolic="YES" id="DdB-XA-UaY"/>
+                            <constraint firstItem="sBX-jE-yMa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="82" id="H1B-jD-Ezk"/>
+                            <constraint firstItem="4pw-1a-bml" firstAttribute="top" secondItem="gcy-Dj-6eZ" secondAttribute="top" id="JKu-Xl-BPc"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="top" secondItem="sBX-jE-yMa" secondAttribute="bottom" constant="40" id="UVY-gw-6SY"/>
+                            <constraint firstItem="4pw-1a-bml" firstAttribute="baseline" secondItem="gcy-Dj-6eZ" secondAttribute="firstBaseline" id="ZRx-RH-s0I"/>
+                            <constraint firstItem="sBX-jE-yMa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="g4E-PR-YXK"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="baseline" secondItem="4pw-1a-bml" secondAttribute="firstBaseline" id="gB2-Ub-Hsz"/>
+                            <constraint firstItem="4pw-1a-bml" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tHn-Rq-Kgd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="receiveJWTText" destination="sBX-jE-yMa" id="1QE-yI-6ZT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="403" y="394"/>
         </scene>
     </scenes>
 </document>

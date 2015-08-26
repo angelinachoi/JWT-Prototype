@@ -14,6 +14,8 @@
 		5A178CD41B7A544700127013 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A178CD31B7A544700127013 /* Images.xcassets */; };
 		5A178CD71B7A544700127013 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A178CD51B7A544700127013 /* LaunchScreen.xib */; };
 		5A178CE31B7A544700127013 /* JWT_PrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A178CE21B7A544700127013 /* JWT_PrototypeTests.swift */; };
+		5A178CED1B7A548600127013 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A178CEC1B7A548600127013 /* 1.jpg */; };
+		5AE7CFAE1B867988004D36E0 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 5AE7CFAD1B867988004D36E0 /* ios */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,9 @@
 		5A178CDC1B7A544700127013 /* JWT-PrototypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JWT-PrototypeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A178CE11B7A544700127013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A178CE21B7A544700127013 /* JWT_PrototypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT_PrototypeTests.swift; sourceTree = "<group>"; };
+		5A178CEC1B7A548600127013 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		5AE7CFA71B8647A8004D36E0 /* JWT-Prototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "JWT-Prototype.entitlements"; sourceTree = "<group>"; };
+		5AE7CFAD1B867988004D36E0 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +84,15 @@
 		5A178CC61B7A544700127013 /* JWT-Prototype */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7CFA71B8647A8004D36E0 /* JWT-Prototype.entitlements */,
 				5A178CC91B7A544700127013 /* AppDelegate.swift */,
 				5A178CCE1B7A544700127013 /* ViewController.swift */,
 				5A178CD01B7A544700127013 /* Main.storyboard */,
 				5A178CD31B7A544700127013 /* Images.xcassets */,
 				5A178CD51B7A544700127013 /* LaunchScreen.xib */,
+				5A178CEC1B7A548600127013 /* 1.jpg */,
 				5A178CCB1B7A544700127013 /* JWT_Prototype.xcdatamodeld */,
+				5AE7CFAD1B867988004D36E0 /* ios */,
 				5A178CC71B7A544700127013 /* Supporting Files */,
 			);
 			path = "JWT-Prototype";
@@ -164,6 +172,12 @@
 				TargetAttributes = {
 					5A178CC31B7A544700127013 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 8C3NVD5H3C;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					5A178CDB1B7A544700127013 = {
 						CreatedOnToolsVersion = 6.4;
@@ -196,8 +210,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A178CD21B7A544700127013 /* Main.storyboard in Resources */,
+				5A178CED1B7A548600127013 /* 1.jpg in Resources */,
 				5A178CD71B7A544700127013 /* LaunchScreen.xib in Resources */,
 				5A178CD41B7A544700127013 /* Images.xcassets in Resources */,
+				5AE7CFAE1B867988004D36E0 /* ios in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,9 +362,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JWT-Prototype/JWT-Prototype.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "JWT-Prototype/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -356,9 +376,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JWT-Prototype/JWT-Prototype.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "JWT-Prototype/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -415,6 +439,7 @@
 				5A178CE81B7A544700127013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A178CE91B7A544700127013 /* Build configuration list for PBXNativeTarget "JWT-PrototypeTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +448,7 @@
 				5A178CEB1B7A544700127013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

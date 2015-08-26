@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "JWT_Prototype.ViewController.decodePayload (JWT_Prototype.ViewController)(Swift.String) -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSData(base64EncodedString: base64String, options: nil)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
