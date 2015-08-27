@@ -205,7 +205,7 @@ class KeychainService: NSObject {
         var dataFromString: NSData = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         
         // Instantiate a new default keychain query
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleAlways], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessible])
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
         
         // Delete any existing items
         SecItemDelete(keychainQuery as CFDictionaryRef)
@@ -220,7 +220,7 @@ class KeychainService: NSObject {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleAlways], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue,kSecAttrAccessible])
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue,kSecAttrAccessibleValue])
         
         var dataTypeRef :Unmanaged<AnyObject>?
         
