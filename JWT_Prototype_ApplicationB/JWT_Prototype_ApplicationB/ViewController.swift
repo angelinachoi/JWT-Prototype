@@ -100,7 +100,7 @@ class KeychainService: NSObject {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue,kSecAttrAccessible])
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleWhenUnlocked], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue,kSecAttrAccessible])
         
         var dataTypeRef :Unmanaged<AnyObject>?
         
@@ -116,7 +116,7 @@ class KeychainService: NSObject {
             
             // Convert the data retrieved from the keychain into a string
             contentsOfKeychain = NSString(data: retrievedData, encoding: NSUTF8StringEncoding)
-            
+            println("load completed - app B")
         } else {
             println("Nothing was retrieved from the keychain. Status code \(status)")
             contentsOfKeychain = "error: nothing was loaded."

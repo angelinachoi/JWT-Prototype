@@ -205,7 +205,7 @@ class KeychainService: NSObject {
         var dataFromString: NSData = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         
         // Instantiate a new default keychain query
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString,kSecAttrAccessibleWhenUnlocked], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
         
         // Delete any existing items
         SecItemDelete(keychainQuery as CFDictionaryRef)
@@ -220,18 +220,17 @@ class KeychainService: NSObject {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue,kSecAttrAccessibleValue])
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue,kSecAttrAccessibleWhenUnlocked], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue,kSecAttrAccessibleValue])
         
-        var dataTypeRef :Unmanaged<AnyObject>?
+        var kcResult :Unmanaged<AnyObject>?
         
         // Search for the keychain items
-        let status: OSStatus = SecItemCopyMatching(keychainQuery, &dataTypeRef)
-        
-        let opaque = dataTypeRef?.toOpaque()
+        let status: OSStatus = SecItemCopyMatching(keychainQuery, &kcResult)
+    
         
         var contentsOfKeychain: NSString?
         
-        if let op = opaque {
+        if let op = kcResult?.toOpaque() {
             let retrievedData = Unmanaged<NSData>.fromOpaque(op).takeUnretainedValue()
             
             // Convert the data retrieved from the keychain into a string
