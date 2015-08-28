@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -20,12 +20,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBX-jE-yMa">
-                                <rect key="frame" x="118" y="102" width="364" height="396"/>
+                                <rect key="frame" x="118" y="156" width="364" height="368"/>
                                 <color key="backgroundColor" red="0.38092710079999997" green="0.45921124099999999" blue="0.77544006239999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="364" id="dUI-A6-N2p"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.96499464779999999" green="0.96714751639999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -33,10 +32,30 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 </variation>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pw-1a-bml">
-                                <rect key="frame" x="295" y="538" width="289" height="42"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6q-sB-bKi">
+                                <rect key="frame" x="118" y="28" width="364" height="92"/>
+                                <color key="backgroundColor" red="0.96499464779999999" green="0.96714751639999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="289" id="S8Z-Cn-nTB"/>
+                                    <constraint firstAttribute="width" constant="364" id="kMd-9O-Kyv"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Please paste JWT token in box below. Then click 'Save' button to save it to device Keychain">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="20" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                </variation>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pw-1a-bml">
+                                <rect key="frame" x="206" y="530" width="150" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="hwI-xx-paG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Load Token">
@@ -50,9 +69,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcy-Dj-6eZ">
-                                <rect key="frame" x="16" y="538" width="289" height="42"/>
+                                <rect key="frame" x="27" y="530" width="150" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="289" id="aLh-ID-Vnr"/>
+                                    <constraint firstAttribute="width" constant="150" id="rRA-xK-zog"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Save Token">
@@ -65,20 +84,47 @@
                                     <action selector="saveTokenFunction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pYe-30-rE3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jqy-EV-dph">
+                                <rect key="frame" x="399" y="530" width="150" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Decode Token">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                </variation>
+                                <connections>
+                                    <action selector="decodeToken:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qXv-bQ-Ohx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jqy-EV-dph" secondAttribute="trailing" constant="35" id="4RE-6h-6KT"/>
                             <constraint firstItem="sBX-jE-yMa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="79O-EV-6UT"/>
-                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="AEF-k1-BdV"/>
-                            <constraint firstAttribute="bottom" secondItem="gcy-Dj-6eZ" secondAttribute="bottom" constant="20" symbolic="YES" id="DdB-XA-UaY"/>
-                            <constraint firstItem="sBX-jE-yMa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="82" id="H1B-jD-Ezk"/>
-                            <constraint firstItem="4pw-1a-bml" firstAttribute="top" secondItem="gcy-Dj-6eZ" secondAttribute="top" id="JKu-Xl-BPc"/>
-                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="top" secondItem="sBX-jE-yMa" secondAttribute="bottom" constant="40" id="UVY-gw-6SY"/>
-                            <constraint firstItem="4pw-1a-bml" firstAttribute="baseline" secondItem="gcy-Dj-6eZ" secondAttribute="firstBaseline" id="ZRx-RH-s0I"/>
-                            <constraint firstItem="sBX-jE-yMa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="g4E-PR-YXK"/>
-                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="baseline" secondItem="4pw-1a-bml" secondAttribute="firstBaseline" id="gB2-Ub-Hsz"/>
-                            <constraint firstItem="4pw-1a-bml" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tHn-Rq-Kgd"/>
+                            <constraint firstItem="Jqy-EV-dph" firstAttribute="firstBaseline" secondItem="4pw-1a-bml" secondAttribute="baseline" id="Cmh-dz-qio"/>
+                            <constraint firstItem="sBX-jE-yMa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="136" id="H1B-jD-Ezk"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="top" secondItem="4pw-1a-bml" secondAttribute="top" id="L4U-ga-n00"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="top" secondItem="sBX-jE-yMa" secondAttribute="bottom" constant="6" id="SAa-8A-obJ"/>
+                            <constraint firstItem="A6q-sB-bKi" firstAttribute="leading" secondItem="sBX-jE-yMa" secondAttribute="leading" id="a6v-X9-UFb"/>
+                            <constraint firstItem="4pw-1a-bml" firstAttribute="leading" secondItem="gcy-Dj-6eZ" secondAttribute="trailing" constant="29" id="cxF-BN-Vkt"/>
+                            <constraint firstItem="A6q-sB-bKi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="dDx-v7-zPy"/>
+                            <constraint firstItem="sBX-jE-yMa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="40" id="g4E-PR-YXK"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="baseline" secondItem="4pw-1a-bml" secondAttribute="firstBaseline" constant="-1" id="gB2-Ub-Hsz"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="11" id="ifG-1O-cDm"/>
+                            <constraint firstItem="Jqy-EV-dph" firstAttribute="top" secondItem="4pw-1a-bml" secondAttribute="top" id="jLk-se-bjd"/>
+                            <constraint firstItem="sBX-jE-yMa" firstAttribute="top" secondItem="A6q-sB-bKi" secondAttribute="bottom" constant="36" id="k2y-zX-CGo"/>
+                            <constraint firstItem="Jqy-EV-dph" firstAttribute="leading" secondItem="4pw-1a-bml" secondAttribute="trailing" constant="43" id="nRL-Jx-iaJ"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="firstBaseline" secondItem="4pw-1a-bml" secondAttribute="baseline" id="pe1-cX-4bI"/>
+                            <constraint firstItem="Jqy-EV-dph" firstAttribute="baseline" secondItem="4pw-1a-bml" secondAttribute="firstBaseline" id="qeg-V8-zeF"/>
+                            <constraint firstItem="gcy-Dj-6eZ" firstAttribute="baseline" secondItem="Jqy-EV-dph" secondAttribute="baseline" id="ybe-22-gjw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Jqy-EV-dph" secondAttribute="bottom" constant="37" id="z0n-tl-f5Z"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gB2-Ub-Hsz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="receiveJWTText" destination="sBX-jE-yMa" id="1QE-yI-6ZT"/>

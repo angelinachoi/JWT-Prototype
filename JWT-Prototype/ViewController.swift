@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        //clear the view
         receiveJWTText.text = ""
     }
 
@@ -47,12 +48,9 @@ class ViewController: UIViewController {
     @IBAction func saveTokenFunction(sender: UIButton) {
         if receiveJWTText.text != "" {
             KeychainService.saveToken("\(receiveJWTText.text)") // Saves the token
-            // KeychainService.loadToken() // Loads the token
-            
+            showAlert("Success", message: "Token saved!")
         } else {
-            let alert: UIAlertController = UIAlertController(title: "No", message: "There is token pasted to save!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            showAlert("No", message: "There is no token pasted to save!")
         }
     }
     
@@ -60,17 +58,36 @@ class ViewController: UIViewController {
         receiveJWTText.text = ""
         receiveJWTText.text = KeychainService.loadToken() as! String// Loads the token
         
-        //decodePayload(receiveJWTText.text) // Decodes the token and translates it into comprehensive text
+        //decodePayload(receiveJWTText.text) // Decodes the token payload and translates it into comprehensive text
+        showAlert("Completed", message: "Token load completed!")
     }
     
-    func decodePayload(tokenstr: String) {
+    
+    @IBAction func decodeToken(sender: UIButton) {
+        if receiveJWTText.text != "" {
+            decodePayload(receiveJWTText.text)
+        } else {
+            showAlert("No", message: "There is no token pasted to decode!")
+        }
+        
+    }
+    
+    private func showAlert(tilte: String, message: String) {
+        let alert: UIAlertController = UIAlertController(title: tilte, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    //code to decode all 3 parts, most code copied from decodePayload function
+    private func decodeAll(tokenstr: String) {
         
         // Splitting JWT to extract payload
         let arr = split(tokenstr) {$0 == "."}
         var counter = 0
         
-        // var base64String = arr[1] as String
-        var testString = ""
+        
+        var decodeResult = ""
+        //loop through all 3 parts of JWT, will fail on 3rd part - signature piece
         for eachElement in arr {
             counter += 1
             var base64String = eachElement as String
@@ -90,7 +107,7 @@ class ViewController: UIViewController {
             if let data = NSData(base64EncodedString: base64String, options: nil) {
                 let str = NSString(data: data, encoding: NSUTF8StringEncoding)!
                 println(str) // Example: {"exp":1426822163,"id":"550b07738895600e99000001"}
-                testString += "\(str)\n"
+                decodeResult += "\(str)\n"
                 
                 
                 
@@ -99,15 +116,12 @@ class ViewController: UIViewController {
             }
         }
         //run decoding algorithm (third part is encoded)
-        
-        let alert: UIAlertController = UIAlertController(title: "Test", message: "\(testString)", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        showAlert("Decode All", message: "\(decodeResult)")
         
     }
     
     /// URI Safe base64 decode
-    func base64decode(input:String) -> NSData? {
+    private func base64decode(input:String) -> NSData? {
         let rem = count(input) % 4
         
         var ending = ""
@@ -123,8 +137,8 @@ class ViewController: UIViewController {
     }
 
     
-    /*
-    func decodePayload(tokenstr: String) {
+    
+    private func decodePayload(tokenstr: String) {
         
         // Splitting JWT to extract payload
         let arr = split(tokenstr) {$0 == "."}
@@ -147,10 +161,9 @@ class ViewController: UIViewController {
             let password = tokenDict["password"] as! String // This code of validation is specific to the token received.
             
             if adminright == true { // If adminright is true and the JWT token is legitimate
-                let alert: UIAlertController = UIAlertController(title: "Success", message: "This token is valid\n\nUsername: \(username)\nPassword: \(password)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                
                 // Display message box to display username and password
+                showAlert("Success", message: "This token is valid\n\nUsername: \(username)\nPassword: \(password)")
             }
 
         } else { // adminright is not true or another error occurred.
@@ -158,7 +171,7 @@ class ViewController: UIViewController {
         }
         
     }
-    */
+    
     
     func retrieveJsonFromData(data: NSData) -> NSDictionary { // Now deserialize JSON object into dictionary
         var error: NSError?
@@ -246,7 +259,7 @@ class KeychainService: NSObject {
             println("load completed")
         } else {
             println("Nothing was retrieved from the keychain. Status code \(status)")
-            contentsOfKeychain = "meow" //test
+            contentsOfKeychain = "failed" //test
         }
 
         return contentsOfKeychain
