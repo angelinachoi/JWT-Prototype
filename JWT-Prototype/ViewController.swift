@@ -27,7 +27,7 @@ let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
 
 
 let kSecAttrAccessibleValue = NSString(format: kSecAttrAccessible)
-let ksConstantArray = [
+let ksConstantMap = [
     "kSecAttrAccessibleAfterFirstUnlock" : kSecAttrAccessibleAfterFirstUnlock,
     "kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly" : kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
     "kSecAttrAccessibleAlways" : kSecAttrAccessibleAlways,
@@ -81,25 +81,29 @@ class ViewController: UIViewController {
             showAlert("No", message: "There is no token pasted to decode!")
         }
 */
-        
+        testKeyChainSavingOptions()
+        showAlert("Test Completed", message: "KeyChain save and load test completed")
+    }
+    
+    private func testKeyChainSavingOptions() {
         var count = 0
-        var loadResult = ""
-
-        for (typeName, kcConst)  in ksConstantArray {
+        var loadSummary = ""
+        
+        for (kcAccessTypeName, kcConst)  in ksConstantMap {
             count += 1
             kSecAttrAccessibleConstant = kcConst
-            var tokenStr:NSString = NSString.init(string: "JWTtoken-\(count)")
-            KeychainService.saveToken(tokenStr)
-            var loaded: NSString
-            loaded = KeychainService.loadToken() ?? ""
             
-            println(tokenStr)
-            println(loaded as String)
-            loadResult += "\(typeName) - load - \(loaded)\n"
-        
+            var token: NSString = NSString.init(string: "jwt-\(count)")
+            KeychainService.saveToken(token)
+            var loadedToken: NSString = KeychainService.loadToken() ?? ""
+            
+            //println(tokenStr)
+            //println(loaded as String)
+            loadSummary += "\(kcAccessTypeName)  - \(loadedToken)\n"
+            
         }
-        receiveJWTText.text = loadResult
-        showAlert("Test Completed", message: "KeyChain save and load test completed")
+        receiveJWTText.text = loadSummary
+        
     }
     
     private func showAlert(tilte: String, message: String) {
