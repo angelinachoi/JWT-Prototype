@@ -25,9 +25,18 @@ let kSecMatchLimitValue = NSString(format: kSecMatchLimit)
 let kSecReturnDataValue = NSString(format: kSecReturnData)
 let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
 
-let kSecAttrAccessibleAfterFirstUnlockValue = NSString(format: kSecAttrAccessibleAfterFirstUnlock)
+
 let kSecAttrAccessibleValue = NSString(format: kSecAttrAccessible)
-let kSecAttrAccessibleWhenUnlockedValue = NSString(format: kSecAttrAccessibleWhenUnlocked)
+let ksConstantArray = [
+    "kSecAttrAccessibleAfterFirstUnlock" : kSecAttrAccessibleAfterFirstUnlock,
+    "kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly" : kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
+    "kSecAttrAccessibleAlways" : kSecAttrAccessibleAlways,
+    "kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly" : kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
+    "kSecAttrAccessibleAlwaysThisDeviceOnly" : kSecAttrAccessibleAlwaysThisDeviceOnly,
+    "kSecAttrAccessibleWhenUnlocked" : kSecAttrAccessibleWhenUnlocked,
+    "kSecAttrAccessibleWhenUnlockedThisDeviceOnly" : kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+]
+var kSecAttrAccessibleConstant = kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
 
 
 class ViewController: UIViewController {
@@ -64,12 +73,33 @@ class ViewController: UIViewController {
     
     
     @IBAction func decodeToken(sender: UIButton) {
+//test keychain saving
+/*
         if receiveJWTText.text != "" {
             decodePayload(receiveJWTText.text)
         } else {
             showAlert("No", message: "There is no token pasted to decode!")
         }
+*/
         
+        var count = 0
+        var loadResult = ""
+
+        for (typeName, kcConst)  in ksConstantArray {
+            count += 1
+            kSecAttrAccessibleConstant = kcConst
+            var tokenStr:NSString = NSString.init(string: "JWTtoken-\(count)")
+            KeychainService.saveToken(tokenStr)
+            var loaded: NSString
+            loaded = KeychainService.loadToken() ?? ""
+            
+            println(tokenStr)
+            println(loaded as String)
+            loadResult += "\(typeName) - load - \(loaded)\n"
+        
+        }
+        receiveJWTText.text = loadResult
+        showAlert("Test Completed", message: "KeyChain save and load test completed")
     }
     
     private func showAlert(tilte: String, message: String) {
@@ -219,7 +249,7 @@ class KeychainService: NSObject {
         
         // Instantiate a new default keychain query
 
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleConstant], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
 
         
         // Delete any existing items
@@ -236,7 +266,7 @@ class KeychainService: NSObject {
         // Tell the query to return a result
         // Limit our results to one item
 
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue, kSecAttrAccessibleValue])
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleConstant], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue, kSecAttrAccessibleValue])
 
         
         var kcResult :Unmanaged<AnyObject>?
