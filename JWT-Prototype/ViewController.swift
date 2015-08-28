@@ -218,11 +218,9 @@ class KeychainService: NSObject {
         var dataFromString: NSData = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         
         // Instantiate a new default keychain query
-<<<<<<< HEAD
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleWhenUnlocked], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
-=======
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString,kSecAttrAccessibleWhenUnlocked], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
->>>>>>> origin/master
+
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
+
         
         // Delete any existing items
         SecItemDelete(keychainQuery as CFDictionaryRef)
@@ -237,11 +235,9 @@ class KeychainService: NSObject {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
-<<<<<<< HEAD
+
         var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue, kSecAttrAccessibleValue])
-=======
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, kCFBooleanTrue, kSecMatchLimitOneValue,kSecAttrAccessibleWhenUnlocked], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue,kSecAttrAccessibleValue])
->>>>>>> origin/master
+
         
         var kcResult :Unmanaged<AnyObject>?
         
