@@ -253,16 +253,21 @@ class KeychainService: NSObject {
         
         // Instantiate a new default keychain query
 
-        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleConstant], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
-
+        var keychainQueryDel: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue])
         
         // Delete any existing items
-        SecItemDelete(keychainQuery as CFDictionaryRef)
-
+        var statusDel: OSStatus = SecItemDelete(keychainQueryDel as CFDictionaryRef)
+        println("delete Status code \(statusDel)")
+        //-50 One or more parameters passed to the function were not valid.
+        
+        
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, userAccount, dataFromString, kSecAttrAccessibleConstant], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue, kSecAttrAccessibleValue])
         
         // Add the new keychain item
         var status: OSStatus = SecItemAdd(keychainQuery as CFDictionaryRef, nil)
-        println("save completed")
+        //–25299 The item already exists.
+        
+        println("save completed. Status code \(status)")
     }
     
     private class func load(service: NSString) -> NSString? {
@@ -278,7 +283,7 @@ class KeychainService: NSObject {
         // Search for the keychain items
         let status: OSStatus = SecItemCopyMatching(keychainQuery, &kcResult)
     
-        
+        //–25300 The item already exists.
         var contentsOfKeychain: NSString?
         
         if let op = kcResult?.toOpaque() {
